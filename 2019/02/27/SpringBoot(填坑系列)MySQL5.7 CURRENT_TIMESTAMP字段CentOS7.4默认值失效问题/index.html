@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="springBoot," />
 
 
 
@@ -80,20 +80,21 @@
 
 
 
-<meta name="description" content="#SpringBoot(填坑) MySQL5.7 CURRENT_TIMESTAMP字段CentOS7.4默认值失效问题12遇见问题：我在本地端（windos端，数据库版本MySQL5.7,SpringBoot2.1.3，数据库框架 JPA）测试代码时current_timestamp字段只要设有置默认值，就会自动生成数据的创建时间，与修改数据之后的修改时间。但是在CentOS服务器中。调用JPA">
+<meta name="description" content="12遇见问题：我在本地端（windos端，数据库版本MySQL5.7,SpringBoot2.1.3，数据库框架 JPA）测试代码时current_timestamp字段只要设有置默认值，就会自动生成数据的创建时间，与修改数据之后的修改时间。但是在CentOS服务器中。调用JPA 中save（）方法,字段却不会自动生成了这是其中一张数据库的案例。">
+<meta name="keywords" content="springBoot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Reality&#39;s Blog">
+<meta property="og:title" content="SpringBoot(填坑) MySQL5.7 CURRENT_TIMESTAMP字段CentOS7.4默认值失效问题">
 <meta property="og:url" content="http://yoursite.com/2019/02/27/SpringBoot(填坑系列)MySQL5.7 CURRENT_TIMESTAMP字段CentOS7.4默认值失效问题/index.html">
 <meta property="og:site_name" content="Reality&#39;s Blog">
-<meta property="og:description" content="#SpringBoot(填坑) MySQL5.7 CURRENT_TIMESTAMP字段CentOS7.4默认值失效问题12遇见问题：我在本地端（windos端，数据库版本MySQL5.7,SpringBoot2.1.3，数据库框架 JPA）测试代码时current_timestamp字段只要设有置默认值，就会自动生成数据的创建时间，与修改数据之后的修改时间。但是在CentOS服务器中。调用JPA">
+<meta property="og:description" content="12遇见问题：我在本地端（windos端，数据库版本MySQL5.7,SpringBoot2.1.3，数据库框架 JPA）测试代码时current_timestamp字段只要设有置默认值，就会自动生成数据的创建时间，与修改数据之后的修改时间。但是在CentOS服务器中。调用JPA 中save（）方法,字段却不会自动生成了这是其中一张数据库的案例。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://pic.superbed.cn/item/5c7628373a213b0417b23bcb">
 <meta property="og:image" content="https://pic.superbed.cn/item/5c76284a3a213b0417b23d55">
 <meta property="og:image" content="https://pic.superbed.cn/item/5c7628573a213b0417b23e7c">
-<meta property="og:updated_time" content="2019-02-27T06:04:43.731Z">
+<meta property="og:updated_time" content="2019-02-27T06:08:51.671Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reality&#39;s Blog">
-<meta name="twitter:description" content="#SpringBoot(填坑) MySQL5.7 CURRENT_TIMESTAMP字段CentOS7.4默认值失效问题12遇见问题：我在本地端（windos端，数据库版本MySQL5.7,SpringBoot2.1.3，数据库框架 JPA）测试代码时current_timestamp字段只要设有置默认值，就会自动生成数据的创建时间，与修改数据之后的修改时间。但是在CentOS服务器中。调用JPA">
+<meta name="twitter:title" content="SpringBoot(填坑) MySQL5.7 CURRENT_TIMESTAMP字段CentOS7.4默认值失效问题">
+<meta name="twitter:description" content="12遇见问题：我在本地端（windos端，数据库版本MySQL5.7,SpringBoot2.1.3，数据库框架 JPA）测试代码时current_timestamp字段只要设有置默认值，就会自动生成数据的创建时间，与修改数据之后的修改时间。但是在CentOS服务器中。调用JPA 中save（）方法,字段却不会自动生成了这是其中一张数据库的案例。">
 <meta name="twitter:image" content="https://pic.superbed.cn/item/5c7628373a213b0417b23bcb">
 
 
@@ -130,7 +131,7 @@
 
 
 
-  <title> | Reality's Blog</title>
+  <title>SpringBoot(填坑) MySQL5.7 CURRENT_TIMESTAMP字段CentOS7.4默认值失效问题 | Reality's Blog</title>
   
 
 
@@ -274,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">SpringBoot(填坑) MySQL5.7 CURRENT_TIMESTAMP字段CentOS7.4默认值失效问题</h1>
         
 
         <div class="post-meta">
@@ -286,7 +287,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-27T14:00:29+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-27T14:16:02+08:00">
                 2019-02-27
               </time>
             
@@ -324,7 +325,8 @@
       
 
       
-        <p>#SpringBoot(填坑) MySQL5.7 CURRENT_TIMESTAMP字段CentOS7.4默认值失效问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">遇见问题：我在本地端（windos端，数据库版本MySQL5.7,SpringBoot2.1.3，数据库框架 JPA）测试代码时current_timestamp字段只要设有置默认值，就会自动生成数据的创建时间，与修改数据之后的修改时间。但是在CentOS服务器中。调用JPA 中save（）方法,字段却不会自动生成了</span><br><span class="line">这是其中一张数据库的案例。</span><br></pre></td></tr></table></figure></p>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">遇见问题：我在本地端（windos端，数据库版本MySQL5.7,SpringBoot2.1.3，数据库框架 JPA）测试代码时current_timestamp字段只要设有置默认值，就会自动生成数据的创建时间，与修改数据之后的修改时间。但是在CentOS服务器中。调用JPA 中save（）方法,字段却不会自动生成了</span><br><span class="line">这是其中一张数据库的案例。</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p><strong>这里我设置的创建时间都是有默认值的</strong><br><img src="https://pic.superbed.cn/item/5c7628373a213b0417b23bcb" alt="SQL表"></p>
 <p><strong>这是发送的创建用户请求，里面的逻辑有save方法</strong><br><img src="https://pic.superbed.cn/item/5c76284a3a213b0417b23d55" alt="示例"></p>
 <p><strong>这是在线上服务器报的错误</strong><br><img src="https://pic.superbed.cn/item/5c7628573a213b0417b23e7c" alt="错误日志"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">排查问题：前面我说了，我已经设置了字段有默认值的..但是为什么在线上服务器居然没有自动生成。我百思不得其解，在本地端他安然无恙，怎么线上环境炸了呢？而且我还在日志中发现一般都是inset中会出错误，尝试解决：首先我在entity层中删除了createtime，updatetime，果然不报空了。但是在我的freemarker上又必须有这个字段怎么办呢？</span><br><span class="line">解决问题：在你的createtime，updatetime上分别加上@CreatedDate和@LastModifiedDate在entity类上加注解@EntityListeners(AuditingEntityListener.class)还要在你的启动类加上@EnableJpaAuditing问题应刃解决。</span><br><span class="line">代码示例：</span><br></pre></td></tr></table></figure></p>
@@ -347,6 +349,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/springBoot/" rel="tag"># springBoot</a>
+          
+        </div>
       
 
       
@@ -455,7 +463,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
