@@ -80,16 +80,20 @@
 
 
 
-<meta name="description" content="过一个平凡无趣的人生实在太容易了,你可以不读书,不冒险,不运动,不写作,不外出,不折腾…但是,人生最后悔的事情就是：我本可以。-陈素封">
-<meta property="og:type" content="website">
+<meta name="description" content="#SpringBoot填坑系列 Shiro 与 Redis多级缓存问题发现问题12在一次项目实践中有实现多级缓存其中有已经包括了Shiro的Cache,本以为开启redis的缓存是一件很简单的事情只需要在启动类上加上@EnableCaching 注解就会启动缓存管理了，但是问题出现了 重要错误日志截图1java.lang.IllegalStateException: @Bean method Sh">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Reality&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/Android/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/03/15/SpringBoot填坑系列 Shiro 与 Redis多级缓存问题/index.html">
 <meta property="og:site_name" content="Reality&#39;s Blog">
-<meta property="og:description" content="过一个平凡无趣的人生实在太容易了,你可以不读书,不冒险,不运动,不写作,不外出,不折腾…但是,人生最后悔的事情就是：我本可以。-陈素封">
+<meta property="og:description" content="#SpringBoot填坑系列 Shiro 与 Redis多级缓存问题发现问题12在一次项目实践中有实现多级缓存其中有已经包括了Shiro的Cache,本以为开启redis的缓存是一件很简单的事情只需要在启动类上加上@EnableCaching 注解就会启动缓存管理了，但是问题出现了 重要错误日志截图1java.lang.IllegalStateException: @Bean method Sh">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pic.superbed.cn/item/5c8a60e93a213b04176f2246">
+<meta property="og:image" content="https://pic.superbed.cn/item/5c8a62903a213b04176f381b">
+<meta property="og:updated_time" content="2019-03-14T15:35:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reality&#39;s Blog">
-<meta name="twitter:description" content="过一个平凡无趣的人生实在太容易了,你可以不读书,不冒险,不运动,不写作,不外出,不折腾…但是,人生最后悔的事情就是：我本可以。-陈素封">
+<meta name="twitter:description" content="#SpringBoot填坑系列 Shiro 与 Redis多级缓存问题发现问题12在一次项目实践中有实现多级缓存其中有已经包括了Shiro的Cache,本以为开启redis的缓存是一件很简单的事情只需要在启动类上加上@EnableCaching 注解就会启动缓存管理了，但是问题出现了 重要错误日志截图1java.lang.IllegalStateException: @Bean method Sh">
+<meta name="twitter:image" content="https://pic.superbed.cn/item/5c8a60e93a213b04176f2246">
 
 
 
@@ -119,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/Android/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/15/SpringBoot填坑系列 Shiro 与 Redis多级缓存问题/"/>
 
 
 
 
 
-  <title>标签: Android | Reality's Blog</title>
+  <title> | Reality's Blog</title>
   
 
 
@@ -144,7 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -238,166 +242,144 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Android<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/SpringBoot填坑系列 Shiro 与 Redis多级缓存问题/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="D1NOVO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Reality's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/11/17/简化ORMLite数据接口服务/" itemprop="url">
-              
-                <span itemprop="name">简化ORMLite数据服务接口</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-17T19:15:02+08:00"
-              content="2018-11-17" >
-          11-17
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-15T14:57:36+08:00">
+                2019-03-15
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/15/AndroidORMLite第三方数据库框架/" itemprop="url">
-              
-                <span itemprop="name">AndroidORMLite第三方数据库框架</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-15T16:12:02+08:00"
-              content="2018-11-15" >
-          11-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/13/Android项目相关技术详解/" itemprop="url">
-              
-                <span itemprop="name">Android项目相关技术详解</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-11-13T22:16:02+08:00"
-              content="2018-11-13" >
-          11-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/03/Recyclerview依赖包问题/" itemprop="url">
-              
-                <span itemprop="name">Recyclerview依赖包问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-03T22:16:02+08:00"
-              content="2018-04-03" >
-          04-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/30/Restart/" itemprop="url">
-              
-                <span itemprop="name">重新开始记录我的博客</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-30T22:16:02+08:00"
-              content="2018-03-30" >
-          03-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <p>#SpringBoot填坑系列 Shiro 与 Redis多级缓存问题<br><strong>发现问题</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在一次项目实践中有实现多级缓存其中有已经包括了Shiro的Cache,本以为开启redis的缓存是一件很简单的事情只需要在启动类上加上</span><br><span class="line">@EnableCaching 注解就会启动缓存管理了，但是问题出现了</span><br></pre></td></tr></table></figure></p>
+<p><strong>重要错误日志截图</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: @Bean method ShiroConfig.cacheManager called as a bean reference for type [org.apache.shiro.cache.ehcache.EhCacheManager] but overridden by non-compatible bean instance of type [org.springframework.data.redis.cache.RedisCacheManager]. Overriding bean of same name declared in: class path resource [org/springframework/boot/autoconfigure/cache/RedisCacheConfiguration.class]</span><br></pre></td></tr></table></figure></p>
+<p><strong>错误日志分析</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">看日志大概就发现一个非法状态异常，我们继续查看接下来的日志有一段非常的重要日志Overriding bean of same name翻译过来的意思是帮你重写了一个名字一样的Bean,我在看看日志里有提到RedisCacheManager与我自己实现的cacheManager到这里我已经感觉到问题所在了，以下图为RedisCacheManager部分实现代码。和我自己的shiro的cacheManager实现方法。</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://pic.superbed.cn/item/5c8a60e93a213b04176f2246" alt="RedisCacheManager部分源码"><br><img src="https://pic.superbed.cn/item/5c8a62903a213b04176f381b" alt="RedisCacheManager部分源码"><br><strong>解决问题</strong><br>有Spring基础的大家都明白问题所在了吧<br>解决问题在自己实现EhCacheManager把@Bean指定一个名字可以像这样@Bean(name =”cacheManagers” )，还有其他办法大家可以在想办法实现一下嘿嘿。<br><strong>结语</strong><br>虽然我们都知道Spring的报错是非常多的，但是在Spring的报错日志中查找问题所在是非常有用的，大部分的错误，日志都会给你反馈的。<br>共勉</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/27/Spring Data JPA （进阶系列）关键字语义/" rel="next" title="Spring Data JPA （进阶系列）关键字语义">
+                <i class="fa fa-chevron-left"></i> Spring Data JPA （进阶系列）关键字语义
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -405,6 +387,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTM2Mi8xMTg5OA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -628,6 +619,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -656,6 +651,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
