@@ -253,6 +253,235 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/29/SpringBoot 自动装配笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="D1NOVO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Reality's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/29/SpringBoot 自动装配笔记/" itemprop="url">Spring装配笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-29T10:37:02+08:00">
+                2019-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><br></p>
+<h2 id="Spring-手动装配"><a href="#Spring-手动装配" class="headerlink" title="Spring 手动装配"></a>Spring 手动装配</h2><ul>
+<li>Spring 模式注解装配<ul>
+<li>定义：什么是模式注解？一种声明在应用中扮演 “组件”角色的注解</li>
+<li>例如：@Component,@Service,@Configuration</li>
+<li>装配方式：XML(&lt;context:component-scan) 注解 @Component</li>
+</ul>
+</li>
+</ul>
+<p><strong>自定义模式注解的派生性 </strong><br><code>@Component元标注(meta-annotated)的注解,如@Service,当任何组件标记它时，也被操作组件扫描的候选对象。也就是模式注解的层层依赖关系</code></p>
+<ul>
+<li>举例 @Component 派生性</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Repository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 一级 &#123;<span class="doctag">@link</span> Repository <span class="doctag">@Repository</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span> <span class="comment">//注释的作用及其javadoc文档生成工具的使用</span></span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> FirstLevelRepository &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.annotation.FirstLevelRepository;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** &#123;<span class="doctag">@link</span> com.example.annotation.FirstLevelRepository&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>: EvilSay</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2019/6/18 10:32</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@FirstLevelRepository</span>(value = <span class="string">"myFirstLevelRepository"</span>) <span class="comment">//Bean的名字</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyFirstLevelRepository</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ComponentScan</span>(basePackages = <span class="string">"com.example.repository"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">bootstrapRepository</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = <span class="keyword">new</span> SpringApplicationBuilder(bootstrapRepository.class).web(WebApplicationType.NONE)</span><br><span class="line">                .run(args);</span><br><span class="line">        <span class="comment">//验证myFirstLevelRepository是否存在</span></span><br><span class="line">       MyFirstLevelRepository myFirstLevelRepository = context.getBean(<span class="string">"myFirstLevelRepository"</span>,MyFirstLevelRepository.class);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"MyFirstLevelRepository Bean :"</span>+myFirstLevelRepository);</span><br><span class="line"></span><br><span class="line">        context.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>@Component<ul>
+<li>@Repository<ul>
+<li>@FirstLevelRepository</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong> 自定义模式注解的层次性 </strong><br><code>同等与上</code></p>
+<ul>
+<li><p>@Component</p>
+<ul>
+<li><p>@Repository</p>
+<ul>
+<li>@FirstLevelRepository</li>
+<li>@SecondLevelReposlitory</li>
+</ul>
+<p><strong>Spring @Enable 模块装配</strong></p>
+</li>
+<li><p>定义： 具备相同领域的功能组件集合,组合形成一个独立的单元</p>
+</li>
+<li>举例：@EnableWebMvc,@EnableAutoConfiguration 等</li>
+<li><p>实现:   注解方式，编程方式</p>
+<p><strong>自定义<code>@Enable</code>模块</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>**基于接口驱动实现 - ``@EnableHelloWord``**
+
+
+
+
+
+**基于接口驱动实现 - ``@EnableServer``**
+
+
+
+``HelloWordImportSelector``-&gt;`HelloWordConfiguration`-&gt;`helloWorld`
+
+
+
+**Spring 条件装配**
+
++ 定义:Bean装配的前置判断
++ 举例：@Profile ` @Conditional
++ 实现：注解方式，编程方式
+
+**自定义条件装配**
+
+
+
+**基于配置方式实现-`@Profile`**
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">CalculateService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">Integer <span class="title">sum</span><span class="params">(Integer ... integers)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Profile</span>(<span class="string">"Java7"</span>)</span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Java7CalculateService</span> <span class="keyword">implements</span> <span class="title">CalculateService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">sum</span><span class="params">(Integer... integers)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Java7"</span>);</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; integers.length; i++) &#123;</span><br><span class="line">            sum += integers[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CalculateService calculateService = <span class="keyword">new</span> Java7CalculateService();</span><br><span class="line">        System.out.println(calculateService.sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Profile</span>(<span class="string">"Java8"</span>)</span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Java8CalculateService</span> <span class="keyword">implements</span> <span class="title">CalculateService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">sum</span><span class="params">(Integer... integers)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Java8"</span>);</span><br><span class="line">        <span class="keyword">return</span> Stream.of(integers).reduce(<span class="number">0</span>,Integer::sum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        CalculateService calculateService = <span class="keyword">new</span> Java7CalculateService();</span><br><span class="line">        System.out.println(calculateService.sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@SpringBootApplication</span>(scanBasePackages = <span class="string">"com.example.service"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculateServiceBootStrap</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = <span class="keyword">new</span> SpringApplicationBuilder(CalculateServiceBootStrap.class)</span><br><span class="line">                .web(WebApplicationType.NONE)</span><br><span class="line">                .profiles(<span class="string">"Java8"</span>) <span class="comment">//条件判断</span></span><br><span class="line">                .run(args);</span><br><span class="line">        <span class="comment">//验证calculateService是否存在</span></span><br><span class="line">        CalculateService calculateService = context.getBean(CalculateService.class);</span><br><span class="line">        System.out.println(<span class="string">"calculateService.sum(1,2,3,4,5,6,7,8,9,10)"</span>+calculateService.sum(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>));</span><br><span class="line"></span><br><span class="line">        context.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Java8</span><br><span class="line">calculateService.sum(1,2,3,4,5,6,7,8,9,10)55</span><br></pre></td></tr></table></figure>
+
+
+**基于编程的方式实现`@ConditionalOnSystemProperty`**
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Java系统属性，条件判断</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>: EvilSay</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2019/6/18 23:57</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Target</span>(&#123;ElementType.TYPE,ElementType.METHOD&#125;)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Conditional</span>(OnSystemPropertyConditional.class)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ConditionalOnSystemProperty &#123;</span><br><span class="line">    <span class="comment">//Java系统属性名称</span></span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//系统值</span></span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OnSystemPropertyConditional</span> <span class="keyword">implements</span> <span class="title">Condition</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">matches</span><span class="params">(ConditionContext context, AnnotatedTypeMetadata metadata)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        Map&lt;String, Object&gt; attributes = metadata.getAnnotationAttributes(ConditionalOnSystemProperty.class.getName());</span><br><span class="line"></span><br><span class="line">        String propertyName = String.valueOf(attributes.get(<span class="string">"name"</span>));</span><br><span class="line"></span><br><span class="line">        String propertyValue = String.valueOf(attributes.get(<span class="string">"value"</span>));</span><br><span class="line"></span><br><span class="line">        String javaPropertyValue = System.getProperty(propertyName);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> propertyValue.equals(javaPropertyValue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**系统属性条件判断</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>: EvilSay</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2019/6/19 0:03</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SystemPropertyConditionalBootStrap</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConditionalOnSystemProperty</span>(name = <span class="string">"user.name"</span>,value = <span class="string">"EvilSay"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">helloWorld</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello,world，辉哥"</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = <span class="keyword">new</span> SpringApplicationBuilder(SystemPropertyConditionalBootStrap.class).web(WebApplicationType.NONE)</span><br><span class="line">                .run(args);</span><br><span class="line">        String helloWorld = context.getBean(<span class="string">"helloWorld"</span>, String.class);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"helloWorld Bean: "</span> + helloWorld);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helloWorld Bean: hello,world，辉哥</span><br></pre></td></tr></table></figure>
+
+
+##  Spring 自动装配
+
+**自动装配举例**
+
+参考 `META-INF/spring,factories`
+
+实现方法
+
+     1.激活自动装配 -  `@EnableAutoConfiguration`
+
+​     2.实现自动化装配- `@XXXAutoConfiguration`
+
+​     3.配置自动装配实现- `META-INF/spring.factories`
+
+**自定义自动装配**
+
+`HelloWordConfiguration`
+
++ 条件判断：`username.name  == EvilSay`
++ 模式注解：`@Configuration`
++ `@Eanble`模块: `@EnableHelloWord` -&gt; `HelloWordImportSelector` -&gt; `HelloWordConfiguration` -&gt; `HelloWorld Bean`
+
+`例码`
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**Hello,World自动装配</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span>: EvilSay</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2019/6/19 0:48</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span> <span class="comment">//Spring模式装配</span></span><br><span class="line"><span class="meta">@EnableHelloWord</span> <span class="comment">// Spring @Enable 模块装配</span></span><br><span class="line"><span class="meta">@ConditionalOnSystemProperty</span>(name = <span class="string">"user.name"</span>,value = <span class="string">"EvilSay"</span>) <span class="comment">//条件装配</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldAutoConfiguration</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span> <span class="comment">//自动扫描@Configuration下的Bean</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EnableAutoConfigurationBootStrap</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = <span class="keyword">new</span> SpringApplicationBuilder(EnableAutoConfigurationBootStrap.class)</span><br><span class="line">                .web(WebApplicationType.NONE)</span><br><span class="line">                .run(args);</span><br><span class="line"></span><br><span class="line">        String hellWorld = context.getBean(<span class="string">"helloWorld"</span>,String.class);</span><br><span class="line">        System.out.println(<span class="string">"helloWorld Bean ："</span> + hellWorld);</span><br><span class="line"></span><br><span class="line">        context.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/15/SpringBoot填坑系列 Shiro 与 Redis多级缓存问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1288,7 +1517,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
